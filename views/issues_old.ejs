@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Issues | Telemed</title>
+
+		<!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="../icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="../css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+	</head>
+	<body>
+		<% include partials/usernav.ejs %>
+
+		<div class="body" id="chats-wrapper">
+			<div class="row">
+				<div class="col s12 m5" style="min-height: 80vh;position: relative;">
+					<h6 class="f-w-lighter f-s-23 indigo-text text-darken-1">Recent</h6>
+
+					<% if (!issues.length) { %>
+						<p class="grey lighten-2 grey-text text-darken-1 m-t-30 p-t-20 p-b-20 p-l-20 p-r-20">
+							No issues have been created. Tap the pencil icon to create.
+						</p>
+					<% } else { %>
+						<ul class="collection">
+							<% issues.forEach(function(issue, i) { %>
+								<li class="collection-item row" data-hash=<%= chat.hash %>>
+									<div class="col s6 m6">
+										<h6 class="chat-title truncate">
+											<%= issue.title %>
+										</h6>
+									</div>
+									<div class="col s6 m6 truncate right-align chat-date">
+										<p><%= issue.lastMsg.formattedDate %></p>
+									</div>
+									<div class="col s12 m12 truncate">
+										<p class="chat-val"><%= issue.lastMsg.content %></p>
+									</div>
+								</li>
+							<% }) %>
+						</ul>
+					<% } %>
+					<a href="./issues/new" class="btn-floating btn-large waves-effect waves-light indigo" id="write-issue">
+		    			<i class="large material-icons">mode_edit</i>
+		  			</a>
+				</div>
+
+				<div class="col s12 m7">
+					<div id="issue-wrapper">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Javascript -->
+        <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="../vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="../vendor/alertifyjs/js/alertify.min.js"></script>
+
+        <script type="text/javascript" src="../js/lib/materialize.js"></script>
+        <script src="../js/user/scripts.js"></script>
+	</body>
+</html> 

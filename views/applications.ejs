@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Applications | Telemedic</title>
+
+		<!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/lib/datatables.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/lib/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="../icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="../css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="../css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+	</head>
+	<body>
+		<% include partials/adminnav.ejs %>
+
+		<div class="body p-l-10 p-r-10 p-b-20">
+			<div class="row card clamp-height">
+                <h4 class="f-w-bold">Applications</h4>
+                <h6 class="light">Here is a list of pending applications from Doctors and Pharmacists. Approve or decline their applications.</h6>
+
+                <div class="m-t-20">
+                    <table class="highlight responsive-table">
+                        <thead>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Account type</th>
+                            <th>Sex</th>
+                            <th>Date of birth</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Profile</th>
+                        </thead>
+                        <tbody>
+                            <% apps.forEach(function(app, i) { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= app.fullName %></td>
+                                    <td><%= app.accountType %></td>
+                                    <td><%= app.sex %></td>
+                                    <td><%= new Date(app.dob).toLocaleDateString() %></td>
+                                    <td><%= app.phone %></td>
+                                    <td><%= app.email %></td>
+                                    <td><a href="/users/<%= app.username %>">view</a></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+			</div>
+		</div>
+
+		<!-- Javascript -->
+        <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="../vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="../vendor/alertifyjs/js/alertify.min.js"></script>
+        <script type="text/javascript" src="../js/lib/datatables.min.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery.dataTables.min.js"></script>
+        <!-- <script type="text/javascript" src="../js/lib/dataTables.material.min.js"></script> -->
+
+        <script type="text/javascript" src="../js/lib/materialize.js"></script>
+        <script src="../js/user/scripts.js"></script>
+
+        <script type="text/javascript">
+            // $("table").DataTable({
+            //     // columnDefs: [
+            //     //     {
+            //     //         targets: [ 0, 1, 2 ],
+            //     //         className: 'mdl-data-table__cell--non-numeric'
+            //     //     }
+            //     // ]
+            // });
+        </script>
+	</body>
+</html> 

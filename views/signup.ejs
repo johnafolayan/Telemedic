@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sign Up | Telemedic</title>
+
+        <!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="shortcut icon" href="stethoscope-icon.png" type="image/png" />
+    </head>
+
+    <body>
+        <% include partials/nav.ejs %>
+
+        <div class="grey lighten-4 section p-b-40 m-t-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l6 p-t-40 center">
+                        <h3 class="indigo-text">Sign Up with Telemedic</h3>
+                        <h6 class="light">Fill in your details to register with us</h6>
+                    </div>
+                    <div class="col s12 m10 offset-m1 l6 p-t-40">
+                        <div class="white card">
+                            <form id="signup-form" action="/signup" method="POST">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select class="validate" name="accountType" id="accountType" required>
+                                            <option value="" disabled selected> Choose type</option>
+                                            <option value="Patient"> Patient</option>
+                                            <option value="Doctor"> Doctor</option>
+                                        </select>
+                                        <label for="accountType">Choose account type</label>
+                                    </div>
+
+                                    <div class="input-field col s6">
+                                        <input type="text" name="firstName" id="firstName" class="validate" required>
+                                        <label for="firstName">First name</label>
+                                    </div>
+
+                                    <div class="input-field col s6">
+                                        <input type="text" name="lastName" id="lastName" class="validate" required>
+                                        <label for="lastName">Last name</label>
+                                    </div>
+
+                                    <div class="input-field col s6">
+                                        <select class="validate" name="sex" id="sex" required>
+                                            <option value="" disabled selected> Choose sex</option>
+                                            <option value="Male"> Male</option>
+                                            <option value="Female"> Female</option>
+                                        </select>
+                                        <label for="sex">Sex</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="email" name="email" id="email" class="validate" required>
+                                        <label for="email">Email</label>
+                                        <% if (emailError.length) { %>
+                                            <span class="helper-text red-text">
+                                                <%= emailError %>
+                                            </span>
+                                        <% } %>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="text" name="dob" id="dob" class="validate datepicker" required>
+                                        <label for="dob">Date of birth</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="tel" name="phone" id="phone" class="validate" required>
+                                        <label for="phone">Phone</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="text" name="username" id="username" class="validate" required>
+                                        <label for="username">Username</label>
+                                        <% if (usernameError.length) { %>
+                                            <span class="helper-text red-text">
+                                                <%= usernameError %>
+                                            </span>
+                                        <% } %>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="password" name="password" id="password" class="validate" required>
+                                        <label for="password">Create password</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="password" name="confirmPassword" id="confirmPassword" class="validate" required>
+                                        <label for="confirmPassword">Confirm password</label>
+                                        <span class="helper-text red-text">Passwords are not equal</span>
+                                    </div>
+                                </div>
+
+                                <!-- Patient  -->
+                                <!-- <div class="row">
+                                    <div class="input-field col s12">
+                                        <select class="validate" name="securityQ1" id="securityQ1" required>
+                                            <option value="" disabled selected> Choose a security question</option>
+                                            <option value="What is your favorite color"> What is your favorite color</option>
+                                            <option value="What is the name of your best friend"> What is the name of your best friend</option>
+                                            <option value="What is the name of your pet"> What is the name of your pet</option>
+                                            <option value="Which primary school did you attend"> Which primary school did you attend</option>
+                                            <option value="Which football club do you like best"> Which football club do you like best</option>
+                                        </select>
+                                        <label for="securityQ1">Choose a security question</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="text" name="securityA1" id="securityA1" class="validate" required>
+                                        <label for="securityA1">What is your answer</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <select class="validate" name="securityQ2" id="securityQ2" required>
+                                            <option value="" disabled selected> Choose a security question</option>
+                                            <option value="What is your favorite color"> What is your favorite color</option>
+                                            <option value="What is the name of your best friend"> What is the name of your best friend</option>
+                                            <option value="What is the name of your pet"> What is the name of your pet</option>
+                                            <option value="Which primary school did you attend"> Which primary school did you attend</option>
+                                            <option value="Which football club do you like best"> Which football club do you like best</option>
+                                        </select>
+                                        <label for="securityQ2">Choose a security question</label>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="text" name="securityA2" id="securityA2" class="validate" required>
+                                        <label for="securityA2">What is your answer</label>
+                                    </div>
+                                </div> -->
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button type="submit" class="disabled btn indigo lighten-1 white-text text-darken-1 waves-effect waves-light">
+                                            Continue <i class="material-icons right">send</i> 
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <p class="center m-t-20">Already have an account? <a href="login">Log in</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include partials/footer.ejs %>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="vendor/alertifyjs/js/alertify.min.js"></script>
+
+        <script type="text/javascript" src="js/lib/materialize.js"></script>
+        <script src="js/scripts.js"></script>
+
+
+        <!--[if lt IE 10]>
+            <script src="js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html> 

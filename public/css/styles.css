@@ -1,0 +1,131 @@
+body {
+	background: rgba(230,230,230,0.2);
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+
+@media (min-width: 993px) {
+	nav .signup {
+		background: rgb(63, 81, 181);
+		width: 100px;
+		text-align: center;
+		margin-left: 30px;
+		color: #fff!important;
+	}
+
+	nav .signup:hover {
+		background: #fff;
+		color: #000!important;
+	}
+
+	nav .login, nav .logout {
+		width: 100px;
+		margin-left: 10px;
+		text-align: center;
+	}
+
+	nav .login:hover, nav .logout:hover {
+		background: rgb(63, 81, 181);
+		color: #fff!important;
+	}
+}
+
+.parallax-container {
+	min-height: 200px;
+	/*line-height: 0;*/
+	height: auto;
+	color: rgba(255,255,255,.9);
+}
+
+.parallax-container .section {
+	width: 100%;
+}
+
+.icon-block i {
+	font-size: 80px;
+}
+
+#index-banner {
+	background-color: rgba(0,0,0,0.75);
+}
+
+/*Add custom cursor so it auto inherits font styles*/
+#typed-wrap::after {
+	content: '|';
+	display: inline;
+	-webkit-animation: blink 0.7s infinite;
+	-moz-animation: blink 0.7s infinite;
+	animation: blink 0.7s infinite;
+}
+
+.typed-cursor {
+   	opacity: 0;
+	display: none;
+}
+
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+
+#how .card {
+	min-height: 180px;
+}
+
+@media (max-width: 600px) {
+	#how .card {
+		max-width: 300px;
+		margin: 0 auto;
+		margin-bottom: 10px;
+	}
+}
+
+#reviews .col .light {
+	font-style: italic;
+	font-size: 24px;
+}
+
+#contact li .fa {
+	margin-right: 15px;
+}
+
+
+
+.footer-links li {
+	margin-bottom: 15px;
+}
+
+.footer-links li .fa {
+	margin-right: 13px;
+}
+
+.footer-links li a:hover {
+	border-bottom: 2px solid #fff;
+}
+
+.input-field label {
+	font-size: 20px;
+}

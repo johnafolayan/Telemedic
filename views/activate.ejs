@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Activate | Telemedic</title>
+		
+		<!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="../icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="../css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        
+        <script type="text/javascript" src="../js/lib/socket.io.js"></script>
+        <script type="text/javascript" src="../js/lib/simplepeer.min.js"></script>
+        
+        <style type="text/css">
+    		#account-status {
+    			min-height: 2vh;
+    		}
+
+        	@media (min-width: 501px) {
+        		#account-status {
+        			min-height: 34vh;
+        		}
+        	}
+        </style>
+	</head>
+	<body>
+		<% include partials/nav.ejs %>
+
+		<% if (pendingActivate) { %>
+		<div class="section grey lighten-4 m-t-2">
+			<div class="container" id="account-status">
+				<p class="light f-s-18">Your application has been sent to the admin panel. A review will take place, and a conclusion will be made eventually. Please ensure you check back later, to confirm if your account was validated.</h5>
+			</div>
+		</div>
+		<% } else { %>
+		<div class="section grey lighten-4 m-t-2">
+			<div class="container">
+				<div class="row">
+					<div class="col s12 m8">
+						<h3 class="black-text">Complete your registration</h3>
+						<p class="light f-s-18">We require some information from you, before you become a certified doctor on this platform.</p>
+
+						<div class="row">
+							<form method="POST" action="/u/activate" enctype="multipart/form-data" id="activate-form">
+								<div class="file-field input-field col s12">
+									<div class="btn indigo darken-4">
+        								<span>File</span>
+       	 								<input type="file" name="CV" title="Curriculum Vitae" required>
+      								</div>
+      								<div class="file-path-wrapper">
+        								<input class="file-path validate" type="text" placeholder="Upload your Curriculum Vitae (CV)">
+      								</div>
+								</div>
+
+								<!-- <div class="file-field input-field col s12">
+									<p class="light f-s-18">Any other documents you have? Feel free to add.</p>
+									<div class="btn indigo darken-4">
+        								<span>Others</span>
+       	 								<input type="file" name="Others" title="Other documents" multiple>
+      								</div>
+      								<div class="file-path-wrapper">
+        								<input class="file-path validate" type="text" placeholder="Upload other documents">
+      								</div>
+								</div> -->
+
+								<div class="input-field col s12">
+									<p class="light f-s-18">You get a percentage of the fees paid by patients for each chat. We'd like to have your bank details.</p>
+									<input type="tel" name="account" id="account" placeholder="Your account number" minlength="19" maxlength="19" required>
+								</div>
+
+								<div class="input-field col s12">
+									<button type="submit" class="btn right indigo darken-4">SEND</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% } %>
+
+		<% include partials/footer.ejs %>
+
+		<!-- Javascript -->
+		<script src="https://js.paystack.co/v1/inline.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="../vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="../vendor/alertifyjs/js/alertify.min.js"></script>
+
+        <script type="text/javascript" src="../js/lib/materialize.js"></script>
+        <script src="../js/user/scripts.js"></script>
+	</body>
+</html> 

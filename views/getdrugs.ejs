@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Issues | Telemedic</title>
+
+		<!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="../icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="../css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+        
+        <script type="text/javascript" src="../js/lib/socket.io.js"></script>
+        <script type="text/javascript" src="../js/lib/simplepeer.min.js"></script>
+	</head>
+	<body>
+		<% include partials/usernav.ejs %>
+
+		<div class="body p-l-10 p-r-10 p-t-10">
+			<div class="row card clamp-height">
+                <h4 class="col s12 f-w-bold">Available Drug Stores</h4>
+                <h6 class="col s12 light">Get drugs from our registered pharmacists</h6>
+
+                <table class="col s12 highlight responsive-table m-t-20">
+                    <thead>
+                        <th>#</th>
+                        <th>Company name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <% list.forEach(function(item, i) { %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= item.company %></td>
+                                <td><a href="callto:<%= item.phone %>"><%= item.phone %></a></td>
+                                <td><a href="mailto:<%= item.email %>"><%= item.email %></a></td>
+                                <td><%= item.address %></td>
+                                <td><a class="p-chat" href="/u/issues?cw=<%= item.username %>">Chat</a></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+			</div>
+		</div>
+
+		<!-- Javascript -->
+		<script src="https://js.paystack.co/v1/inline.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="../vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="../vendor/alertifyjs/js/alertify.min.js"></script>
+
+        <script type="text/javascript" src="../js/lib/materialize.js"></script>
+        <script src="../js/user/scripts.js"></script>
+        <!-- <script src="../js/user/chat.js"></script> -->
+	</body>
+</html> 

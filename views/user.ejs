@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><%= member.firstName + ' ' + member.lastName %> | Telemedic</title>
+
+		<!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="../css/lib/datatables.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/lib/dataTables.material.min.css">
+        <link rel="stylesheet" type="text/css" href="../icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="../css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+
+        <style type="text/css">
+            #tb > div > div span {
+                margin-left: 40px;
+            }
+        </style>
+	</head>
+	<body>
+		<% if (user.accountType !== "Admin") { %>
+            <% include partials/usernav.ejs %>
+        <% } else { %>
+            <% include partials/adminnav.ejs %>
+        <% } %>
+
+		<div class="body p-l-20 p-r-20 p-t-20 p-b-0">
+			<div class="card row clamp-height">
+                <% if (user.username === member.username) { %>
+                <h4 class="col s12 f-w-bold">Your Profile</h4>
+                <% } else { %>
+                <h4 class="col s12 light"><%= member.firstName + "'s Profile" %></h4>
+                <% } %>
+                </h5>
+
+                <div id="tb" class="col s12 highlight responsive-table m-t-20 m-b-40">
+                    <div class="row">
+                        <div class="col s12">
+                            <b>Full name</b>
+                            <span><%= member.firstName + ' ' + member.lastName %></span>
+                        </div>
+                        <div class="col s12">
+                            <b>Account type</b>
+                            <span><%= member.accountType %></span>
+                        </div>
+                        <div class="col s12">
+                            <b>Date joined</b>
+                            <span><%= new Date(member.joinDate).toLocaleDateString() %></span>
+                        </div>
+                        <div class="col s12">
+                            <b>Sex</b>
+                            <span><%= member.sex %></span>
+                        </div>
+                        <div class="col s12">
+                            <b>Email</b>
+                            <span><%= member.email %></span>
+                        </div>
+                        <div class="col s12">
+                            <b>Date of birth</b>
+                            <span><%= member.dob %></span>
+                        </div>
+                        <div class="col s12">
+                            <b>Phone</b>
+                            <span><%= member.phone %></span>
+                        </div>
+                    </div>
+                </div>
+
+                <% if (user.accountType === "Admin") { %>
+                    <% if (member.documents.length) { %>
+                    <h6 class="f-w-bold">Documents</h6>
+                    <% } %>
+
+                    <% member.documents.forEach(function(doc) { %>
+                        <a href="<%=  %>">
+                    <% }) %>
+
+                    <% if (member.accountType === "Doctor") { %>
+                        <button id="toggle-activate" data-username="<%= member.username %>" class="btn m-t-20">
+                            <% if (member.activated) { %>
+                            Deactivate
+                            <% } else { %>
+                            Activate
+                            <% } %>
+                        </button>
+                    <% } %>
+                <% } %>
+			</div>
+		</div>
+
+		<!-- Javascript -->
+        <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="../vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="../vendor/alertifyjs/js/alertify.min.js"></script>
+        <script type="text/javascript" src="../js/lib/datatables.min.js"></script>
+        <script type="text/javascript" src="../js/lib/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../js/lib/dataTables.material.min.js"></script>
+
+        <script type="text/javascript" src="../js/lib/materialize.js"></script>
+        <script src="../js/user/scripts.js"></script>
+
+        <script type="text/javascript">
+            // $(".table").DataTable({
+            //     columnDefs: [
+            //         {
+            //             targets: [ 0, 1, 2 ],
+            //             className: 'mdl-data-table__cell--non-numeric'
+            //         }
+            //     ]
+            // });
+        </script>
+	</body>
+</html> 

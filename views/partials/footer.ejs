@@ -1,0 +1,29 @@
+<footer class="page-footer indigo darken-4">
+	<div class="container">
+			<div class="row">
+  			<div class="col l6 s12">
+    				<h5 class="white-text">Telemedic</h5>
+    				<p class="grey-text text-lighten-4">We are a team dedicated to providing you with the best and quality healthcare services. We care so much about making it so easy to get healh-related, information, and so we've brought this solution to you.</p>
+ 		 		</div>
+  			<div class="col l3 offset-l3 s12">
+  				<h5>Quick Links</h5>
+    				<ul class="footer-links">
+      				<li><i class="fa fa-angle-double-right"></i><a href="/" class="white-text">Home</a></li>
+	            <li><i class="fa fa-angle-double-right"></i><a href="/#about" class="white-text">About</a></li>
+	            <li><i class="fa fa-angle-double-right"></i><a href="/#contact" class="white-text">Contact</a></li>
+            	<li><i class="fa fa-angle-double-right"></i><a href="/signup" class="white-text signup">Sign Up</a></li>
+              <% if (typeof loggedIn !== "undefined" && loggedIn) { %>
+                <li><i class="fa fa-angle-double-right"></i><a href="/logout" class="white-text logout">Log out</a></li>
+              <% } else { %>
+              	<li><i class="fa fa-angle-double-right"></i><a href="/login" class="white-text login">Log in</a></li>
+              <% } %>
+    				</ul>
+  			</div>
+			</div>
+	</div>
+  <div class="footer-copyright">
+    	<div class="container center light" style="letter-spacing:1.5px;">
+    	Made with <i class="fa fa-heart" style="color:#f25;"></i>
+    	</div>
+	</div>
+</footer>

@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\acer\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add express ejs mongoose passport passport-local passport-facebook passport-twitter passport-google-oauth connect-flash bcrypt-nodejs
+
+PATH: 
+  C:\Users\acer\Desktop\John Afolayan\Applications\cmder\bin;C:\Users\acer\Desktop\John Afolayan\Applications\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\Users\acer\Desktop\John Afolayan\Applications\cmder\vendor\conemu-maximus5;C:\Users\acer\Desktop\John Afolayan\Applications\cmder\vendor\conemu-maximus5\ConEmu;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Android\platform-tools\;C:\Program Files\Git\cmd;C:\Program Files\Brackets\command;C:\Program Files\nodejs\;C:\wamp\bin\php\php5.5.12;C:\ProgramData\ComposerSetup\bin;C:\MinGW\bin;C:\Users\acer\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\acer\AppData\Local\Programs\Python\Python36-32\;C:\SocketeQ\windowsandroid_root\system\bin;C:\SocketeQ\windowsandroid_root\system\lib;C:\Program Files\Microsoft VS Code\bin;C:\Users\acer\AppData\Roaming\npm;C:\Users\acer\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\mingw32;C:\Program Files\Git\usr\bin;C:\Users\acer\Desktop\John Afolayan\Applications\cmder
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  10.1.0
+
+Platform: 
+  win32 ia32
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:50:26)
+
+npm manifest: 
+  {
+    "name": "telemedic",
+    "version": "1.0.0",
+    "description": "telemedicine app",
+    "main": "server.js",
+    "repository": "github.com/johnafolayan/telemedic",
+    "author": "John Afolayan jafolayan@htomail.com",
+    "license": "MIT",
+    "private": false
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

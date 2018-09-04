@@ -1,0 +1,33 @@
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a href="/" class="brand-logo indigo-text">Telemedic</a>
+        <a href="#!" class="sidenav-trigger" data-target="nav-mobile">
+            <i class="material-icons indigo-text">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/" class="black-text">Home</a></li>
+            <li><a href="/#about" class="black-text">About</a></li>
+            <li><a href="/#contact" class="black-text">Contact</a></li>
+            <li><a href="/signup" class="black-text signup">Sign Up</a></li>
+            <% if (loggedIn) { %>
+                <li><a href="/users/<%= username %>" class="black-text">Dashboard</a></li>
+                <li><a href="/logout" class="black-text logout">Log out</a></li>
+            <% } else { %>
+                <li><a href="/login" class="black-text login">Log In</a></li>
+            <% } %>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav indigo" id="nav-mobile">
+    <li><a href="/" class="white-text">Home</a></li>
+    <li><a href="/#about" class="white-text">About</a></li>
+    <li><a href="/#contact" class="white-text">Contact</a></li>
+    <li><a href="/signup" class="white-text signup">Sign Up</a></li>
+    <% if (loggedIn) { %>
+        <li><a href="/users/<%= username %>" class="black-text">Dashboard</a></li>
+        <li><a href="/logout" class="black-text logout">Log Out</a></li>
+    <% } else { %>
+        <li><a href="/login" class="black-text login">Log In</a></li>
+    <% } %>
+</ul>

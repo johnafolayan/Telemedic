@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login | Telemedic</title>
+
+        <!-- CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/lib/materialize.css">
+        <link rel="stylesheet" type="text/css" href="icons/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/form-elements.css">
+        <link rel="stylesheet" type="text/css" href="css/helpers.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="shortcut icon" href="stethoscope-icon.png" type="image/png" />
+    </head>
+
+    <body>
+        <% include partials/nav.ejs %>
+
+        <div class="grey lighten-4 section p-b-40 m-t-2">
+            <div class="container">
+                <div class="row">
+                    <% if (loginMessage.length) { %>
+                        <div id="loginMsg" class="col s12 m10 offset-m1 p-t-20 p-b-20 green lighten-2 white-text text-darken-2 center">
+                            <%= loginMessage %>
+                        </div>
+                    <% } %>
+
+                    <div class="col s12 p-t-40 center">
+                        <h3 class="indigo-text">Login to your Telemedic account</h3>
+                    </div>
+                    <div class="col s12 m8 offset-m2 p-t-40">
+                        <div class="white card">
+                            <form id="login-form" action="/login" method="POST">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="username" id="username" required>
+                                        <label for="username">Username</label>
+                                        <% if (loginError.length) { %>
+                                            <span class="helper-text red-text">
+                                                <%= loginError %>
+                                            </span>
+                                        <% } %>
+                                    </div>
+
+                                    <div class="input-field col s12">
+                                        <input type="password" name="password" id="password" required>
+                                        <label for="password">Password</label>
+                                        <% if (passwordError.length) { %>
+                                            <span class="helper-text red-text">
+                                                <%= passwordError %>
+                                            </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn indigo lighten-1 white-text text-darken-1 waves-effect waves-light">
+                                    Login <i class="material-icons right">send</i> 
+                                </button>
+
+                                <p class="center m-t-20">Don't have an account? <a href="signup">Sign Up</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% include partials/footer.ejs %>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="vendor/js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="vendor/alertifyjs/js/alertify.min.js"></script>
+
+        <script type="text/javascript" src="js/lib/materialize.js"></script>
+        <script src="js/scripts.js"></script>
+
+
+        <!--[if lt IE 10]>
+            <script src="js/placeholder.js"></script>
+        <![endif]-->
+    </body>
+</html>

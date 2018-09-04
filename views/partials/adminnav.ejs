@@ -1,0 +1,93 @@
+<nav class="grey lighten-4" id="menubar">
+    <div class="nav-wrapper">
+        <a href="../" class="indigo-text brand-logo center">Telemedic</a>
+        <a href="#" class="sidenav-trigger" data-target="nav-mobile">
+            <i class="fa fa-bars indigo-text text-darken-4"></i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+        	<li class="grey-text text-darken-4">Hello, <span class="indigo-text text-darken-2"><%= user.firstName %></span></li>
+        	<li class="m-l-20"><a href="/logout" class="indigo-text text-darken-4">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div>
+	<nav class="indigo darken-4" id="nav-desktop">
+		<div class="avatar blue lighten-1">
+			<%= user.firstName.charAt(0).toUpperCase() %>
+		</div>
+
+		<ul>
+			<li>
+				<a href="/u/admin" class="center-align">
+					<div>
+						<i class="fa fa-2x fa-tachometer"></i>
+					</div>
+					<div>
+						Dashboard
+					</div>
+				</a>
+			</li>
+	        <li>
+	        	<a href="/u/applications" class="center-align">
+	        		<div>
+	        			<i class="fa fa-2x fa-mail-reply"></i>
+	        		</div>
+	        		<div>
+	        			Applications
+	        		</div>
+	        	</a>
+	        </li>
+
+	        <li>
+	        	<a href="/u/users" class="center-align">
+	        		<div>
+	        			<i class="fa fa-2x fa-mail-reply"></i>
+	        		</div>
+	        		<div>
+	        			Users
+	        		</div>
+	        	</a>
+	        </li>
+		</ul>
+	</nav>
+</div>
+
+<nav id="nav-mobile" class="indigo darken-4 sidenav">
+	<div class="avatar blue lighten-1">
+		<%= user.firstName.charAt(0).toUpperCase() %>
+	</div>
+	<ul>
+		<li>
+			<a href="/u/admin" class="center-align">
+				<div>
+					<i class="fa fa-2x fa-tachometer"></i>
+				</div>
+				<div>
+					Dashboard
+				</div>
+			</a>
+		</li>
+        <li>
+        	<a href="/u/applications" class="center-align">
+        		<div>
+        			<i class="fa fa-2x fa-mail-reply"></i>
+        		</div>
+        		<div>
+        			Applications
+        		</div>
+        	</a>
+        </li>
+
+        <li>
+        	<a href="/u/users" class="center-align">
+        		<div>
+        			<i class="fa fa-2x fa-mail-reply"></i>
+        		</div>
+        		<div>
+        			Users
+        		</div>
+        	</a>
+        </li>
+	<ul>
+</nav>
