@@ -389,7 +389,7 @@ function initVideo(initiator, cb) {
 
         	peer.on('signal', function(data) {
         		user.peerData.id = data;
-        		console.log('signal received');
+        		alert('signal received');
         		// cb && cb(data);
         		if (initiator) {
         			cb && cb(data);
