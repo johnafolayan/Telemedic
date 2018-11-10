@@ -45,6 +45,7 @@ module.exports = function(passport) {
 	                newUser.dob 		= req.body.dob;
 	                newUser.phone		= req.body.phone;
 	                newUser.username    = req.body.username;
+	                newUser.sex 		= req.body.sex;
 					newUser.activated   = (newUser.accountType === 'Patient');
 
 	                // save the user

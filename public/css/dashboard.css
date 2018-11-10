@@ -283,7 +283,7 @@
 }
 
 #video-frame #friend-video {
-	position: absolute;
+	position: fixed;
 	width: 100vw;
 	height: auto;
 	left: 0;
@@ -293,7 +293,6 @@
 
 @media (min-width: 992px) {
 	#video-frame #friend-video {
-		position: relative;
 		height: calc(100vh - 55px);
 		width: auto;
 		left: 50%;
@@ -302,9 +301,9 @@
 }
 
 #video-frame #self-video {
-	position: absolute;
+	position: fixed;
 	right: 0px;
-	top: 0;
+	top: 50px;
 	width: 150px;
 	height: 150px;
 }

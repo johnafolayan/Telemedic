@@ -73,6 +73,14 @@ function handleConnection(socket, io) {
 		socket.broadcast.to(socket.group).emit('peerrequest', data);
 	});
 
+	socket.on('peer2signal', data => {
+		socket.broadcast.to(socket.group).emit('peer2signal', data);
+	});
+
+	socket.on('peer1signal', data => {
+		socket.broadcast.to(socket.group).emit('peer1signal', data);
+	});
+
 	socket.on('peeraccepted', data => {
 		let grp = groups[socket.group];
 		socket.broadcast.to(socket.group).emit('peeraccepted', data);
@@ -85,7 +93,17 @@ function handleConnection(socket, io) {
 
 	socket.on('videoend', function(data) {
 		let grp = groups[socket.group];
-		socket.broadcast.to(socket.group).emit('videoend', data);
+		if (!grp) return;
+
+		Issue.updateOne({ url: socket.group }, 
+		{
+			$set: {
+				messages: grp.issue.messages
+			}
+		}, (err, res) => {
+			if (err) throw err;
+			socket.broadcast.to(socket.group).emit('videoend', data);
+		});
 	});
 }
 

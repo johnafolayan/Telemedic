@@ -16,6 +16,8 @@ const userSchema = mongoose.Schema({
 	activated: { type: Boolean, default: true },
 	pendingActivate: false,
 	account: { type: String, default: "" },
+	company: String,
+	companyAddress: String,
 	documents: [{
 		originalname: String,
 		filename: String,

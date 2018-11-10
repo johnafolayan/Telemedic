@@ -43,7 +43,7 @@ module.exports = function( app ) {
 	});
 
 	$('#videoChat').click(function(evt) {
-		initVideo(true);
+		chatHandler.send('peerrequest');
 	});
 
 	$('#end-call').click(function(evt) {
@@ -182,19 +182,24 @@ function addCollectionEvents() {
 						onVideoChat: function(msg) {
 				            friendVideo.get(0).src = msg.content;
 						},
-						onPeerRequest: function(data) {
+
+						onPeerRequest: function() {
 							if (!videoStarted && confirm('User is requesting a video chat with you. Would you like to accept?')) {
-								initVideo(false, function(selfData) {
-									user.peerData.peer.signal(data);
-									user.peerData.otherId = data;
-									// chatHandler.send('peeraccepted', selfData);
-								});
+								initVideo(true);
+								// signal peer 2
 							}
 						},
-						onPeerAccepted: function(data) {
-							user.peerData.peer.signal(data);
-							user.peerData.otherId = data;
+
+						onPeer2Signal: function(otherData) {
+							initVideo(false, function() {
+								user.peerData.peer.signal(otherData);
+							});
 						},
+
+						onPeer1Signal: function(data) {
+							user.peerData.peer.signal(data);
+						},
+
 						onVideoEnd: function() {
 							frame.hide();
 							videoStarted = false;
@@ -290,31 +295,35 @@ function addMsg(msg) {
 		prevDate = msg.date;
 	}
 
-	var el = ['<div class="row">'];
+	if (msg.by === 'videobot') {
+		$('#messages').append('<div class="row center"><div class="p-t-10 p-b-10 col s10 offset-s1 m8 offset-m2 grey lighten-2 black-text">'+msg.content+' '+renderDate(msg.date)+'</div></div>');
+	} else {
+		var el = ['<div class="row">'];
 	
-	if (msg.by !== (user.firstName + ' ' + user.lastName))
-		el.push('<div class="white msg col s10 m7">');
-	else
-		el.push('<div class="indigo lighten-3 msg col s10 offset-s2 m7 offset-m5">');
+		if (msg.by !== (user.firstName + ' ' + user.lastName))
+			el.push('<div class="white msg col s10 m7">');
+		else
+			el.push('<div class="indigo lighten-3 msg col s10 offset-s2 m7 offset-m5">');
 
-	el = el.concat([
-		'<div class="row">',
-			'<h6 class="col s6 by">',
-			 	msg.by,
-			'</h6>',
-			'<h6 class="col s6 date">',
-				renderTime(msg.date),
-			'</h6>',
-			'<p class="col s12 content">',
-				msg.content,
-			'</p>',
-		'</div>',
-		'</div>',
-		'</div>'
-	]);
+		el = el.concat([
+			'<div class="row">',
+				'<h6 class="col s6 by">',
+				 	msg.by,
+				'</h6>',
+				'<h6 class="col s6 date">',
+					renderTime(msg.date),
+				'</h6>',
+				'<p class="col s12 content">',
+					msg.content,
+				'</p>',
+			'</div>',
+			'</div>',
+			'</div>'
+		]);
 
-	$('#messages').append(el.join('\n'));
-	$('#messages').children().last()[0].scrollIntoView();
+		$('#messages').append(el.join('\n'));
+		$('#messages').children().last()[0].scrollIntoView();
+	}
 }
 
 function addNotice(msg) {
@@ -375,6 +384,14 @@ function initVideo(initiator, cb) {
         	videoStarted = true;
         	stream = localMediaStream;
 
+        	friendVideo.width(window.innerWidth);
+        	friendVideo.height(window.innerHeight);
+
+        	selfVideo.get(0).src = window.URL.createObjectURL(stream);
+        	selfVideo.get(0).play();
+        	
+        	frame.show();
+
         	var peer = new SimplePeer({
         		initiator: initiator,
         		trickle: false,
@@ -384,24 +401,25 @@ function initVideo(initiator, cb) {
         	user.peerData = {
         		peer: peer,
         		id: null,
-        		otherId: null
+        		otherId: null,
+        		hasSignalled: false
         	};
 
         	peer.on('signal', function(data) {
+        		if (user.peerData.hasSignalled) return;
+        		user.peerData.hasSignalled = true;
         		user.peerData.id = data;
-        		alert('signal received');
-        		// cb && cb(data);
+        		// alert('signal received');
         		if (initiator) {
         			cb && cb(data);
-        			chatHandler.send('peerrequest', data);
+        			chatHandler.send('peer2signal', data);
         		} else {
         			cb && cb(data);
-        			chatHandler.send('peeraccepted', data);
+        			chatHandler.send('peer1signal', data);
         		}
         	});
 
         	peer.on('stream', function(data) {
-        		frame.show();
         		friendVideo.get(0).src = window.URL.createObjectURL(data);
         		friendVideo.get(0).play();
         	});
@@ -465,7 +483,7 @@ function fetchIssues(filter, cb) {
 		// listFrame.find('#no-issues').hide();
 		listFrame.append('<ul class="collection" id="issues-list"></ul>');
 
-		result.issues.forEach(addIssue);
+		result.issues.reverse().forEach(addIssue);
 		addCollectionEvents();
 
 		cb();

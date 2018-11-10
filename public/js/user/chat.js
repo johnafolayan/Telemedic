@@ -30,6 +30,14 @@ exports.connect = function(username, issueUrl, config) {
 		config.onPeerRequest(data);
 	});
 
+	socket.on('peer2signal', function(data) {
+		config.onPeer2Signal(data);
+	});
+
+	socket.on('peer1signal', function(data) {
+		config.onPeer1Signal(data);
+	});
+
 	socket.on('peeraccepted', function(data) {
 		config.onPeerAccepted(data);
 	});

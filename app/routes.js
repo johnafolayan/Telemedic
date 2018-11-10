@@ -1,7 +1,6 @@
 const multer = require('multer');
 const Issue = require('./models/issue');
 const User = require('./models/user');
-const Pharmacist = require('./models/pharmacist');
 
 const upload = multer();
 
@@ -213,7 +212,7 @@ module.exports = function(app, passport) {
 	app.get('/u/activate', isLoggedIn, isNotActivated, isNotAdmin, (req, res) => {
 		getUser(req, (err, user) => {
 			user.loggedIn = true;
-			res.render('activate', { user });
+			res.render('activate', user);
 		});
 	});
 
@@ -222,6 +221,8 @@ module.exports = function(app, passport) {
 		{
 			$set: {
 				documents: [ req.file ],
+				company: req.body.company,
+				companyAddress: req.body.companyAddress,
 				account: req.body.account,
 				pendingActivate: true
 			}
@@ -326,7 +327,7 @@ module.exports = function(app, passport) {
 
 	app.get('/u/getdrugs', isLoggedIn, isActivated, isNotAdmin, (req, res) => {
 		getUser(req, async (err, user) => {
-			let list = await Pharmacist.find({}).exec();
+			let list = await User.find({ accountType: 'Pharmacist' }).exec();
 			res.render('getdrugs', { user, list });
 		});
 	});	
